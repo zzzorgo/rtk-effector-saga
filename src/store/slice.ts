@@ -1,36 +1,22 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchData, RootState, Status } from '.';
+import { RootState } from '.';
+import { defaultBuilder, fetchData, FetchedState } from './utils';
 
 interface Repository {
     name: string;
 }
-
-interface State {
-    data: Repository[],
-    status: Status;
-};
 
 const fetchRepositories = createAsyncThunk('repositories/fetch', async () => {
     return fetchData<Repository[]>('https://api.github.com/repositories');
 });
 
 const slice = createSlice({
-    name: 'root',
-    initialState: { status: 'unsent', data: [] } as State,
+    name: 'repository',
+    initialState: { status: 'unsent', data: [] } as FetchedState<Repository[]>,
     reducers: {},
     extraReducers: (builder) => {
-        builder
-            .addCase(fetchRepositories.pending, (state) => {
-                state.status = 'loading';
-            })
-            .addCase(fetchRepositories.rejected, (state) => {
-                state.status = 'error';
-            })
-            .addCase(fetchRepositories.fulfilled, (state, { payload }) => {
-                state.data = payload;
-                state.status = 'success';
-            });
+        defaultBuilder(builder, fetchRepositories);
     }
 });
 
