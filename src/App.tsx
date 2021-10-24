@@ -1,24 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { $errorLoadingRepositories, $repositories, fetchRepositoriesFx, requestedRepositories } from './model';
+import { useStore } from 'effector-react';
 
 function App() {
+  const repositories = useStore($repositories);
+  const errorLoadingRepositories = useStore($errorLoadingRepositories);
+  const loading = useStore(fetchRepositoriesFx.pending);
+
+  const downloadRepositories = () => {
+    requestedRepositories();
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <button onClick={downloadRepositories}>download</button>
+        {loading && 'loading'}
+        {errorLoadingRepositories && 'error'}
+        {!loading && !errorLoadingRepositories && repositories.map(s => s.name)}
     </div>
   );
 }
