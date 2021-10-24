@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import { $repositories, requestedRepositories } from './model';
 import { useStore } from 'effector-react';
+import { $repositoryStore, repositoriesRequested } from './model/repository';
 
 function App() {
-  const repositories = useStore($repositories);
+  const repositories = useStore($repositoryStore);
 
   const downloadRepositories = () => {
-    requestedRepositories();
+    repositoriesRequested();
   };
 
   return (
