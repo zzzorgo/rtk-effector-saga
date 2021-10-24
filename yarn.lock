@@ -1157,7 +1157,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.15.4"
   resolved "https://npm.yandex-team.ru/@babel%2fruntime/-/runtime-7.15.4.tgz?rbtorrent=39eb2c05b15db417bd9fa8be1b80dd4ee6e2b13c#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
   integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
@@ -1532,6 +1532,16 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
+"@reduxjs/toolkit@^1.6.2":
+  version "1.6.2"
+  resolved "https://npm.yandex-team.ru/@reduxjs%2ftoolkit/-/toolkit-1.6.2.tgz?rbtorrent=25fc90bf8cdab6c462927fda5091bae82e49cfc3#2f2b5365df77dd6697da28fdf44f33501ed9ba37"
+  integrity sha512-HbfI/hOVrAcMGAYsMWxw3UJyIoAS9JTdwddsjlr5w3S50tXhWb+EMyhIw+IAvCVCLETkzdjgH91RjDSYZekVBA==
+  dependencies:
+    immer "^9.0.6"
+    redux "^4.1.0"
+    redux-thunk "^2.3.0"
+    reselect "^4.0.0"
+
 "@rollup/plugin-node-resolve@^7.1.1":
   version "7.1.3"
   resolved "https://npm.yandex-team.ru/@rollup%2fplugin-node-resolve/-/plugin-node-resolve-7.1.3.tgz?rbtorrent=af3c1743f3bb4755f61de144d86152e2d1d14b3e#80de384edfbd7bfc9101164910f86078151a3eca"
@@ -1805,6 +1815,14 @@
   dependencies:
     "@types/node" "*"
 
+"@types/hoist-non-react-statics@^3.3.0":
+  version "3.3.1"
+  resolved "https://npm.yandex-team.ru/@types%2fhoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz?rbtorrent=a3a28d2abc1d145e51058df7bc99453d10a329fc#1124aafe5118cb591977aeb1ceaaed1070eb039f"
+  integrity sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==
+  dependencies:
+    "@types/react" "*"
+    hoist-non-react-statics "^3.3.0"
+
 "@types/html-minifier-terser@^5.0.0":
   version "5.1.2"
   resolved "https://npm.yandex-team.ru/@types%2fhtml-minifier-terser/-/html-minifier-terser-5.1.2.tgz?rbtorrent=3f15afd44ff975deb56f72f9527cd3ca752b42ad#693b316ad323ea97eed6b38ed1a3cc02b1672b57"
@@ -1901,6 +1919,16 @@
   integrity sha512-8oz3NAUId2z/zQdFI09IMhQPNgIbiP8Lslhv39DIDamr846/0spjZK0vnrMak0iB8EKb9QFTTIdg2Wj2zH5a3g==
   dependencies:
     "@types/react" "*"
+
+"@types/react-redux@^7.1.16":
+  version "7.1.20"
+  resolved "https://npm.yandex-team.ru/@types%2freact-redux/-/react-redux-7.1.20.tgz?rbtorrent=c5f7b85e7406ab0d51f61dda8fa279e3c8c7af72#42f0e61ababb621e12c66c96dda94c58423bd7df"
+  integrity sha512-q42es4c8iIeTgcnB+yJgRTTzftv3eYYvCZOh1Ckn2eX/3o5TdsQYKUWpLoLuGlcY/p+VAhV9IOEZJcWk/vfkXw==
+  dependencies:
+    "@types/hoist-non-react-statics" "^3.3.0"
+    "@types/react" "*"
+    hoist-non-react-statics "^3.3.0"
+    redux "^4.0.0"
 
 "@types/react@*", "@types/react@^17.0.0":
   version "17.0.31"
@@ -5553,6 +5581,13 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
+hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.2:
+  version "3.3.2"
+  resolved "https://npm.yandex-team.ru/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz?rbtorrent=43ab0056091589d5e8cb9496177e6ea8c613d98b#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
+  integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
+  dependencies:
+    react-is "^16.7.0"
+
 hoopy@^0.1.4:
   version "0.1.4"
   resolved "https://npm.yandex-team.ru/hoopy/-/hoopy-0.1.4.tgz?rbtorrent=037e81ff5115f51558cb56b436c78aaa6ae4a27e#609207d661100033a9a9402ad3dea677381c1b1d"
@@ -5771,6 +5806,11 @@ immer@8.0.1:
   version "8.0.1"
   resolved "https://npm.yandex-team.ru/immer/-/immer-8.0.1.tgz?rbtorrent=f62266ad71d966df515e73a85d90539ec1c632b0#9c73db683e2b3975c424fb0572af5889877ae656"
   integrity sha512-aqXhGP7//Gui2+UrEtvxZxSquQVXTpZ7KDxfCcKAF3Vysvw0CViVaW9RZ1j1xlIYqaaaipBoqdqeibkc18PNvA==
+
+immer@^9.0.6:
+  version "9.0.6"
+  resolved "https://npm.yandex-team.ru/immer/-/immer-9.0.6.tgz?rbtorrent=dec545fdcf2f913b4fa76d4415ee7819e5d91281#7a96bf2674d06c8143e327cbf73539388ddf1a73"
+  integrity sha512-G95ivKpy+EvVAnAab4fVa4YGYn24J1SpEktnJX7JJ45Bd7xqME/SCplFzYFmTbrkwZbQ4xJK1xMTUYBkN6pWsQ==
 
 import-cwd@^2.0.0:
   version "2.1.0"
@@ -9160,7 +9200,7 @@ react-error-overlay@^6.0.9:
   resolved "https://npm.yandex-team.ru/react-error-overlay/-/react-error-overlay-6.0.9.tgz?rbtorrent=a242e02d8e9655d10102d53e9cbfc9dd652035fa#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
-react-is@^16.8.1:
+react-is@^16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://npm.yandex-team.ru/react-is/-/react-is-16.13.1.tgz?rbtorrent=7f27902ce96c964630fc52cb9747f3f63152bed6#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
@@ -9169,6 +9209,18 @@ react-is@^17.0.1:
   version "17.0.2"
   resolved "https://npm.yandex-team.ru/react-is/-/react-is-17.0.2.tgz?rbtorrent=fa8c94ed4c76c752295c87ac4a870b2f66e7b582#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-redux@^7.2.5:
+  version "7.2.5"
+  resolved "https://npm.yandex-team.ru/react-redux/-/react-redux-7.2.5.tgz?rbtorrent=1f762462d9e0f29c129e9ec6c6850535399dee26#213c1b05aa1187d9c940ddfc0b29450957f6a3b8"
+  integrity sha512-Dt29bNyBsbQaysp6s/dN0gUodcq+dVKKER8Qv82UrpeygwYeX1raTtil7O/fftw/rFqzaf6gJhDZRkkZnn6bjg==
+  dependencies:
+    "@babel/runtime" "^7.12.1"
+    "@types/react-redux" "^7.1.16"
+    hoist-non-react-statics "^3.3.2"
+    loose-envify "^1.4.0"
+    prop-types "^15.7.2"
+    react-is "^16.13.1"
 
 react-refresh@^0.8.3:
   version "0.8.3"
@@ -9321,6 +9373,18 @@ redent@^3.0.0:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
 
+redux-thunk@^2.3.0:
+  version "2.3.0"
+  resolved "https://npm.yandex-team.ru/redux-thunk/-/redux-thunk-2.3.0.tgz?rbtorrent=2a0a27330da52c78a6fc6ab4152497d1e3f60579#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+  integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
+
+redux@^4.0.0, redux@^4.1.0, redux@^4.1.1:
+  version "4.1.1"
+  resolved "https://npm.yandex-team.ru/redux/-/redux-4.1.1.tgz?rbtorrent=4e6e8ab169359206697e56342dec5da73e55f6ed#76f1c439bb42043f985fbd9bf21990e60bd67f47"
+  integrity sha512-hZQZdDEM25UY2P493kPYuKqviVwZ58lEmGQNeQ+gXa+U0gYPUBf7NKYazbe3m+bs/DzM/ahN12DbF+NG8i0CWw==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+
 regenerate-unicode-properties@^9.0.0:
   version "9.0.0"
   resolved "https://npm.yandex-team.ru/regenerate-unicode-properties/-/regenerate-unicode-properties-9.0.0.tgz?rbtorrent=1abdf9c07d606ccc8ef46283e65ebb7c5c8b1849#54d09c7115e1f53dc2314a974b32c1c344efe326"
@@ -9450,6 +9514,11 @@ requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://npm.yandex-team.ru/requires-port/-/requires-port-1.0.0.tgz?rbtorrent=32b2f205b3d00932e0055f7a3ea7d186b3277264#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
+
+reselect@^4.0.0:
+  version "4.0.0"
+  resolved "https://npm.yandex-team.ru/reselect/-/reselect-4.0.0.tgz?rbtorrent=2bdc39f0bd56887e17d6a2b35f8528eeec4aa821#f2529830e5d3d0e021408b246a206ef4ea4437f7"
+  integrity sha512-qUgANli03jjAyGlnbYVAV5vvnOmJnODyABz51RdBN7M4WaVu8mecZWgyQNkG8Yqe3KRGRt0l4K4B3XVEULC4CA==
 
 resolve-cwd@^2.0.0:
   version "2.0.0"
