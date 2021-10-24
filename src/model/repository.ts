@@ -1,3 +1,4 @@
+import { useStore } from 'effector-react';
 import { createFetchToolkit } from './createFetchToolkit';
 
 interface Repository {
@@ -8,3 +9,12 @@ export const [
     $repositoryStore,
     repositoriesRequested
 ] = createFetchToolkit<Repository[]>('https://api.github.com/repositories', []);
+
+export const useRepositories = () => {
+    const repositoriesStore = useStore($repositoryStore);
+
+    return {
+        repositoriesStore,
+        repositoriesRequested,
+    };
+};

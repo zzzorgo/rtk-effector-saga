@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
-import { useStore } from 'effector-react';
-import { $repositoryStore, repositoriesRequested } from './model/repository';
+import { useRepositories } from './model/repository';
 
 function App() {
-  const repositories = useStore($repositoryStore);
+  const { repositoriesStore, repositoriesRequested } = useRepositories();
 
   const downloadRepositories = () => {
     repositoriesRequested();
@@ -13,9 +12,9 @@ function App() {
   return (
     <div className="App">
         <button onClick={downloadRepositories}>download</button>
-        {repositories.status === 'loading' && 'loading'}
-        {repositories.status === 'error' && 'error'}
-        {repositories.status === 'success' && repositories.data.map(s => s.name)}
+        {repositoriesStore.status === 'loading' && 'loading'}
+        {repositoriesStore.status === 'error' && 'error'}
+        {repositoriesStore.status === 'success' && repositoriesStore.data.map(s => s.name)}
     </div>
   );
 }
