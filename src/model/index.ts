@@ -4,6 +4,16 @@ interface Repository {
     name: string;
 }
 
+interface State {
+    status: 'loading' | 'unsent' | 'success' | 'error',
+    data: Repository[],
+}
+
+const initialState: State = {
+    data: [],
+    status: 'unsent',
+};
+
 export const requestedRepositories = createEvent();
 
 export const fetchRepositoriesFx = createEffect(async () => {
@@ -17,13 +27,21 @@ export const fetchRepositoriesFx = createEffect(async () => {
     return repositories;
 });
 
-export const $repositories = createStore([] as Repository[])
-    .on(fetchRepositoriesFx.done, (_, { result, params }) => result);
+export const $repositories = createStore(initialState)
+    .on(fetchRepositoriesFx.done, (_, { result }) => ({
+        status: 'success',
+        data: result,
+    }))
+    .on(fetchRepositoriesFx.fail, (prevState) => ({
+        ...prevState,
+        status: 'error'
+    }))
+    .on(requestedRepositories, (prevState) => ({
+        ...prevState,
+        status: 'loading'
+    }));
 
 forward({
     from: requestedRepositories,
     to: fetchRepositoriesFx,
 });
-
-export const $errorLoadingRepositories = createStore(false)
-    .on(fetchRepositoriesFx.fail, () => true);
