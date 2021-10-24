@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '.';
+import { RootState } from './store';
 import { defaultBuilder, fetchData, FetchedState } from './utils';
 
 interface Repository {

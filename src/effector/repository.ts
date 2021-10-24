@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react';
-import { createFetchToolkit } from './createFetchToolkit';
+import { createFetchToolkit } from './utils';
 
 interface Repository {
     name: string;

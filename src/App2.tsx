@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { useRepositories } from './store/slice';
+import { useRepositories } from './rtk/repository';
 
 export function App2() {
   const { repositories, requestRepositories } = useRepositories();

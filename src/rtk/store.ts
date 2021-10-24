@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { repositoryReducer } from './slice';
+import { repositoryReducer } from './repository';
 import { combineReducers } from 'redux';
 
 const appReducer = combineReducers({
