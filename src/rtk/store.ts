@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 
 const appReducer = combineReducers({
     repository: repositoryReducer,
+    // more reducers here
 });
 
 export const store = configureStore({ reducer: appReducer})

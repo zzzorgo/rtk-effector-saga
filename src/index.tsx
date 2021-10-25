@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { App2 } from './App2';
+import { App3 } from './App3';
 import { Provider } from 'react-redux';
-import { store } from './rtk/store';
+import { store } from './saga/store';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App2 />
+      <App3 />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
