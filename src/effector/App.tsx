@@ -1,6 +1,5 @@
 import React from 'react';
-import './App.css';
-import { useRepositories } from './effector/repository';
+import { useRepositories } from './repository';
 
 function App() {
   const { repositoriesStore, repositoriesRequested } = useRepositories();

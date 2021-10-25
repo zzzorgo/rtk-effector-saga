@@ -1,14 +1,12 @@
 import React from 'react';
-import './App.css';
-import { useRepositories } from './saga/repository';
+import { useRepositories } from './repository';
 
-export function App3() {
+export function App2() {
   const { repositories, requestRepositories } = useRepositories();
 
   const downloadRepositories = () => {
     requestRepositories();
   };
-
 
   return (
     <div className="App">
