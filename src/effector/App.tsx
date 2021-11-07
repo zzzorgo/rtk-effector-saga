@@ -6,7 +6,7 @@ function App() {
   const { repositoriesStore, repositoriesRequested } = useRepositories();
 
   const downloadRepositories = () => {
-    repositoriesRequested();
+    repositoriesRequested('facebook');
   };
 
   return (

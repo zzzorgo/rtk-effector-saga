@@ -6,7 +6,7 @@ export const SubComponent = () => {
 
     const downloadRepositories = () => {
         if (repositoriesStore.status === 'unsent') {
-            repositoriesRequested();
+            repositoriesRequested('facebook');
         }
     };
 

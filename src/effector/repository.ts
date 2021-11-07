@@ -8,7 +8,7 @@ interface Repository {
 export const [
     $repositoryStore,
     repositoriesRequested
-] = createFetchToolkitLatest<Repository[]>('https://api.github.com/repositories', []);
+] = createFetchToolkitLatest<Repository[], string>('https://api.github.com/orgs/facebook/repos', []);
 
 export const useRepositories = () => {
     const repositoriesStore = useStore($repositoryStore);
