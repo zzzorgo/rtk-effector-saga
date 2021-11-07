@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './effector/App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { store } from './saga/store';
-import { Provider } from 'react-redux';
-import { App as AppReactQuery } from './react-query/App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <AppReactQuery />
-    </Provider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
