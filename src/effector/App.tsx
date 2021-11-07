@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRepositories } from './repository';
+import { SubComponent } from './SubComponent';
 
 function App() {
   const { repositoriesStore, repositoriesRequested } = useRepositories();
@@ -14,6 +15,7 @@ function App() {
         {repositoriesStore.status === 'loading' && 'loading'}
         {repositoriesStore.status === 'error' && 'error'}
         {repositoriesStore.status === 'success' && repositoriesStore.data.map(s => s.name)}
+        <SubComponent />
     </div>
   );
 }
