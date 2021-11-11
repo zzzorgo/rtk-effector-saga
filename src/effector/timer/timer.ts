@@ -1,12 +1,17 @@
 import { createEffect, createEvent, createStore, forward, guard, sample } from 'effector';
 
+/* ====== mocks ======= */
+
+type TimerData = { problemId: number, now: number, prevTime: number };
+
 function sleep(ms: number) {
     return new Promise((res) => {
         setTimeout(res, ms);
     });
 }
 
-async function updateSpentTime({problemId, delta}: {problemId: number, delta: number}) {
+async function updateSpentTime({problemId, now, prevTime}: TimerData) {
+    const delta = Math.round((now - prevTime) / 1000);
     await sleep(320);
     console.log('updateSpentTime done', delta, problemId);
 }
@@ -19,43 +24,28 @@ async function getTime() {
     return now;
 }
 
-/* ================= */
 export const finishProblem = createEvent();
 const $problemFinished = createStore(false)
     .on(finishProblem, () => true);
 
-
 /* ================= */
 
-async function updateSpentTimeDelta(problemId: number) {
-    const prevTime = $prevTime.getState();
-    const now = Date.now();
-    const delta = Math.round((now - prevTime) / 1000);
-
-    updatePrevTime(now);
-    return await updateSpentTime({problemId, delta});
-}
-
 export const start = createEvent<number>();
-export const pause = createEvent();
-export const updatePrevTime = createEvent<number>();
+export const stop = createEvent();
+export const update = createEvent<TimerData>();
+const startNow = start.map((problemId) => ({ problemId, now: Date.now() }));
 
 const intervalFx = createEffect((problemId: number) => {
-    return window.setInterval(async () => {
-        await updateSpentTimeDelta(problemId);
+    return window.setInterval(() => {
+        const now = Date.now();
+        const prevTime = $prevTime.getState();
+        update({problemId, now, prevTime});
     }, 1000);
 });
 
-const clearIntervalFx = createEffect((timerHandler: number) => {
-    clearInterval(timerHandler);
-});
-
-const getTimeForPauseFx = createEffect(getTime);
-
-const updateFx = createEffect(async ({ problemId }: { problemId: number }) => {
-    await updateSpentTimeDelta(problemId);
-    console.log('final update done', problemId);
-});
+const clearIntervalFx = createEffect<number, void, Error>(window.clearInterval);
+const getTimeForStopFx = createEffect(getTime);
+const updateSpentTimeFx = createEffect(updateSpentTime);
 
 const $timer = createStore<number>(NaN)
     .on(intervalFx.done, (_, { result: intervalHandler }) => intervalHandler);
@@ -66,13 +56,11 @@ const $problemId = createStore<number>(NaN)
 const $prevProblemId = createStore<number>(NaN);
 
 const $time = createStore<number>(NaN)
-    .on(getTimeForPauseFx.done, (_, { result: now }) => {
-        console.log('sync', now);
-        return now;
-    });
+    .on(getTimeForStopFx.done, (_, { result: now }) => now);
 
 const $prevTime = createStore<number>(NaN)
-    .on(updatePrevTime, (_, now) => now);
+    .on(update, (_, { now }) => now)
+    .on(startNow, (_, { now }) => now);
 
 forward({
     from: start,
@@ -80,44 +68,33 @@ forward({
 });
 
 forward({
-    from: start.map(() => Date.now()),
-    to: updatePrevTime
-});
-
-forward({
-    from: pause,
-    to: getTimeForPauseFx,
+    from: stop,
+    to: getTimeForStopFx,
 });
 
 sample({
     source: $problemId,
-    clock: pause,
+    clock: stop,
     target: $prevProblemId,
 });
 
 sample({
     source: $timer,
-    clock: pause,
+    clock: stop,
     target: clearIntervalFx,
 });
 
 guard({
-    source: { problemId: $prevProblemId, now: $time },
-    clock: getTimeForPauseFx.done,
+    source: { problemId: $prevProblemId, now: $time, prevTime: $prevTime },
+    clock: getTimeForStopFx.done,
     filter: (source) => {
-        console.log('sync', source.now);
         console.log('selector', source.now, source.problemId);
-
         return !$problemFinished.getState();
     },
-    target: updateFx,
+    target: updateSpentTimeFx,
 });
 
-/* =============== */
-
-export const manually = createEvent<{ delta: number, problemId: number }>();
-
 forward({
-    from: manually,
-    to: createEffect(updateSpentTime)
+    from: update,
+    to: updateSpentTimeFx,
 });
