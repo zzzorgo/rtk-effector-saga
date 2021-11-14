@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { finishProblem, stop, start, update } from './timer';
+import { stop, start, finishProblem, updateManually } from './timer';
 
 export const TimerControls = () => {
     const [problemId, setProblemId] = useState(1);
@@ -14,7 +14,7 @@ export const TimerControls = () => {
                 setProblemId((id) => id + 1);
             }}>restart</button>
             <button onClick={() => finishProblem()}>finish problem in store</button>
-            <button onClick={() => update({problemId, prevTime: 0, now: 1000})} >manually</button>
+            <button onClick={() => updateManually({problemId, now: 1000, prevTime: 0})} >manually</button>
         </div>
     );
 };
