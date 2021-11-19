@@ -15,8 +15,7 @@ export const stopNow = stop.map(() => Date.now());
 export const update = createEvent<ProblemNow>();
 export const updateManually = createEvent<TimerData>();
 
-
-const intervalFx =  createEffect(({problemId}: { problemId: number }) => {
+export const intervalFx =  createEffect(({problemId}: { problemId: number }) => {
     const bindedUpdate = scopeBind(update);
 
     return window.setInterval(() => {
@@ -25,11 +24,11 @@ const intervalFx =  createEffect(({problemId}: { problemId: number }) => {
     }, 1000);
 });
 
-const clearIntervalFx = createEffect<number, void, Error>((handler) => {
+export const clearIntervalFx = createEffect<number, void, Error>((handler) => {
     window.clearInterval(handler);
 });
 
-const getTimeForStopFx = createEffect(getTime);
+export const getTimeForStopFx = createEffect(getTime);
 export const updateSpentTimeFx = createEffect(updateSpentTime);
 
 export const $timer = createStore<number>(NaN)

@@ -1,14 +1,15 @@
 import React from 'react';
-// import { useRepositories } from './repository';
-// import { SubComponent } from './SubComponent';
+import { Graph } from './graph/Graph';
+import { useRepositories } from './repository';
+import { SubComponent } from './SubComponent';
 import { TimerControls } from './timer/TimerControls';
 
 function App() {
-  // const { repositoriesStore, repositoriesRequested } = useRepositories();
+  const { repositoriesStore, repositoriesRequested } = useRepositories();
 
-  // const downloadRepositories = () => {
-  //   repositoriesRequested('facebook');
-  // };
+  const downloadRepositories = () => {
+    repositoriesRequested('facebook');
+  };
 
   return (
     <div className="App">
@@ -17,7 +18,8 @@ function App() {
         {repositoriesStore.status === 'error' && 'error'}
         {repositoriesStore.status === 'success' && repositoriesStore.data.map(s => s.name)}
         <SubComponent /> */}
-        <TimerControls />
+        {/* <TimerControls /> */}
+        <Graph />
     </div>
   );
 }

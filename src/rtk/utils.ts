@@ -20,6 +20,7 @@ export const defaultBuilder = <Returned, ThunkArg, ThunkApiConfig>(
             state.status = 'error';
         })
         .addCase(fetchEntity.fulfilled, (state, { payload }) => {
+            // @ts-ignore
             state.data = castDraft(payload);
             state.status = 'success';
         });

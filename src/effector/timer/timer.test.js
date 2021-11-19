@@ -3,12 +3,6 @@ import { updateSpentTime } from '../api/external';
 import { destroyTimerMocks, fastSleep, initTimerMocks } from '../utils/timeMachine';
 import { $problemId, finishProblem, start, stop, updateManually } from './timer';
 
-
-// стартует и начинает отправлять
-// стопает и завершает отправку, если возможно
-// корректно перезапускается с другой задачей
-// работает ручная отправка
-
 jest.mock('../api/external', () => ({
     updateSpentTime: jest.fn(async function() {}),
     getTime: async function() { return 999; },

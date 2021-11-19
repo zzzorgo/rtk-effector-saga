@@ -26,6 +26,7 @@ export function createSagaSlice<State extends FetchedState<State['data']>, CaseR
                 draft.status = 'loading';
             },
             requestDataSuccess: (draft, action: PayloadAction<State['data']>) => {
+                // @ts-ignore
                 draft.data = castDraft(action.payload);
                 draft.status = 'success';
             },

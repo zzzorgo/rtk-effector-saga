@@ -1,7 +1,6 @@
 'use strict';
 
 const babelJest = require('babel-jest');
-console.log(1111);
 
 const hasJsxRuntime = (() => {
   if (process.env.DISABLE_NEW_JSX_TRANSFORM === 'true') {

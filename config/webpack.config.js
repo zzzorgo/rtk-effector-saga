@@ -420,6 +420,7 @@ module.exports = function (webpackEnv) {
                       },
                     },
                   ],
+                  ["effector/babel-plugin", {"addLoc": true, "addNames": true}],
                   isEnvDevelopment &&
                     shouldUseReactRefresh &&
                     require.resolve('react-refresh/babel'),
