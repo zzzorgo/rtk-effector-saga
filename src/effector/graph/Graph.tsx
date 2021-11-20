@@ -8,13 +8,12 @@ import { fork } from 'effector';
 // @ts-ignore
 import dagre from 'cytoscape-dagre';
 
-const elements = traverse();
-
 export const Graph = () => {
     const ref = useRef<HTMLDivElement>(null);
     const cy = useRef<any>(null);
 
     useEffect(() => {
+        const elements = traverse();
         cytoscape.use( dagre );
         cy.current = cytoscape({
             container: ref.current,

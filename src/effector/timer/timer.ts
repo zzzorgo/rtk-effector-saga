@@ -1,4 +1,3 @@
-/* eslint-disable effector/no-getState */
 import { createEffect, createEvent, createStore, forward, guard, sample, scopeBind } from 'effector';
 import { getTime, updateSpentTime } from '../api/external';
 import { ProblemNow, TimerData } from './types';

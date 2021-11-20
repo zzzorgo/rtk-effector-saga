@@ -38,12 +38,12 @@ function getCaption(node: Node) {
 }
 
 function getId(node: Node) {
-    return `${node.id}-${node.meta.name}`;
+    return `${node.id}-${node.meta.name}-${node.meta.op}`;
 }
 
 
 function getEdgeId(from: Node, to: Node) {
-    return `${from.id}-${from.meta.name}->${to.id}-${to.meta.name}`;
+    return `${getId(from)}->${getId(to)}`;
 }
 
 function getNodeType(op: string) {
@@ -153,7 +153,10 @@ export function traverse() {
         edges: [] as CyEdge[],
     };
 
+    let i = 0;
+    let j = 0;
     while (stack.length > 0) {
+        // i++
         const node = stack.pop();
 
         if (!node) {
@@ -161,8 +164,34 @@ export function traverse() {
         }
 
         const cyNode = getCyNode(node);
-        newGraph.nodes.push(cyNode);
-        visitedMap.set(node.id, node);
+
+        // if (!visitedMap.has(getId(node))) {
+            newGraph.nodes.push(cyNode);
+            visitedMap.set(node.id, node);
+        // }
+
+        for (let index = 0; index < node.family.owners.length; index++) {
+            const owner = node.family.owners[index];
+
+            if (!visitedMap.has(getId(owner)) ) {
+                visitedMap.set(getId(owner), owner);
+                stack.push(owner);
+                // console.log(owner)
+                // console.log(node)
+                // j++
+            }
+
+            const edgeId = getEdgeId(owner, node);
+            if (!existingEdge.has(edgeId)) {
+
+                // console.warn(node.id, child.id);
+                const lineStyle = node.async ? 'dashed' : 'solid';
+                const label = node.async ? 'async' : '';
+                const edge = getCyEdge(owner, node , label, lineStyle );
+                existingEdge.set(edgeId, edge);
+                newGraph.edges.push(edge);
+            }
+        }
 
         for (let index = 0; index < node.next.length; index++) {
             const child = node.next[index];
