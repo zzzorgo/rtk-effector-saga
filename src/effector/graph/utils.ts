@@ -153,10 +153,7 @@ export function traverse() {
         edges: [] as CyEdge[],
     };
 
-    let i = 0;
-    let j = 0;
     while (stack.length > 0) {
-        // i++
         const node = stack.pop();
 
         if (!node) {
@@ -173,61 +170,74 @@ export function traverse() {
         for (let index = 0; index < node.family.owners.length; index++) {
             const owner = node.family.owners[index];
 
-            if (!visitedMap.has(getId(owner)) ) {
-                visitedMap.set(getId(owner), owner);
+            if (!visitedMap.has(owner.id) ) {
                 stack.push(owner);
-                // console.log(owner)
-                // console.log(node)
-                // j++
             }
 
             const edgeId = getEdgeId(owner, node);
-            if (!existingEdge.has(edgeId)) {
 
-                // console.warn(node.id, child.id);
-                const lineStyle = node.async ? 'dashed' : 'solid';
-                const label = node.async ? 'async' : '';
-                const edge = getCyEdge(owner, node , label, lineStyle );
-                existingEdge.set(edgeId, edge);
-                newGraph.edges.push(edge);
+            if (!existingEdge.has(edgeId)) {
+                // const lineStyle = node.async ? 'dashed' : 'solid';
+                // const label = node.async ? 'async' : '';
+                // const edge = getCyEdge(owner, node , label, lineStyle );
+                // existingEdge.set(edgeId, edge);
+                // newGraph.edges.push(edge);
             }
         }
 
-        for (let index = 0; index < node.next.length; index++) {
-            const child = node.next[index];
-
-            if ( true && (
-                child.meta.op === 'on'
-                || child.meta.op === 'map'
-                || (child.meta.op === 'event' && child.meta.name === 'updates'))
-                || (child.meta.op === 'combine')
-            ) {
-                if (child.next[0]) {
-                    stack.push(child.next[0]);
-                    const edge = getCyEdge(node, child.next[0], child.meta.op);
-                    existingEdge.set(getEdgeId(node, child.next[0]), edge);
-                    newGraph.edges.push(edge);
-                }
-
-                continue;
-
-            // } else if (child.meta.op === 'event' && child.next.length === 0) {
-            //     continue;
-            } else if (!visitedMap.has(child.id)) {
-                stack.push(child);
-            }
+        for (let index = 0; index < node.family.links.length; index++) {
+            const link = node.family.links[index];
             
-            const edgeId = getEdgeId(node, child);
-            if (!existingEdge.has(edgeId)) {
+            if (!visitedMap.has(link.id) ) {
+                stack.push(link);
+            }
 
-                // console.warn(node.id, child.id);
-                const lineStyle = child.async ? 'dashed' : 'solid';
-                const label = child.async ? 'async' : '';
-                const edge = getCyEdge(node, child, label, lineStyle );
+            const edgeId = getEdgeId(node, link);
+
+            if (!existingEdge.has(edgeId)) {
+                const lineStyle = link.async ? 'dashed' : 'solid';
+                const label = link.async ? 'async' : '';
+                const edge = getCyEdge(node, link , label, lineStyle );
                 existingEdge.set(edgeId, edge);
                 newGraph.edges.push(edge);
             }
         }
+
+        // for (let index = 0; index < node.next.length; index++) {
+        //     const child = node.next[index];
+
+        //     if ( true && (
+        //         child.meta.op === 'on'
+        //         || child.meta.op === 'map'
+        //         || (child.meta.op === 'event' && child.meta.name === 'updates'))
+        //         || (child.meta.op === 'combine')
+        //     ) {
+        //         if (child.next[0]) {
+        //             stack.push(child.next[0]);
+        //             const edge = getCyEdge(node, child.next[0], child.meta.op);
+        //             existingEdge.set(getEdgeId(node, child.next[0]), edge);
+        //             newGraph.edges.push(edge);
+        //         }
+
+        //         continue;
+
+        //     // } else if (child.meta.op === 'event' && child.next.length === 0) {
+        //     //     continue;
+        //     } else if (!visitedMap.has(child.id)) {
+        //         stack.push(child);
+        //     }
+            
+        //     const edgeId = getEdgeId(node, child);
+        //     if (!existingEdge.has(edgeId)) {
+
+        //         // console.warn(node.id, child.id);
+        //         const lineStyle = child.async ? 'dashed' : 'solid';
+        //         const label = child.async ? 'async' : '';
+        //         const edge = getCyEdge(node, child, label, lineStyle );
+        //         existingEdge.set(edgeId, edge);
+        //         newGraph.edges.push(edge);
+        //     }
+        // }
     }
 
     // console.log(newGraph);
